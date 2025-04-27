@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+}
+
+/* Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 30px;
+  color: #212529;
+}
+
+/* Search and Filter Bar */
+.search-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-input,
+.filter-select {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 250px;
+}
+
+.btn-refresh {
+  padding: 10px 15px;
+  font-size: 15px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-refresh:hover {
+  background-color: #0b5ed7;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.approvals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.approvals-table thead {
+  background: #212529;
+  color: white;
+}
+
+.approvals-table th,
+.approvals-table td {
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.approvals-table tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.badge-appointment {
+  background: #0d6efd;
+  color: white;
+}
+
+.badge-registration {
+  background: #ffc107;
+  color: black;
+}
+
+.badge-pending {
+  background: #ffc107;
+  color: black;
+}
+
+/* Buttons */
+.inline-form {
+  display: inline;
+}
+
+.btn-approve,
+.btn-reject {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.btn-approve {
+  background-color: #198754;
+  color: white;
+}
+
+.btn-approve:hover {
+  background-color: #157347;
+}
+
+.btn-reject {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-reject:hover {
+  background-color: #bb2d3b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-filter-bar {
+    flex-direction: column;
+  }
+}

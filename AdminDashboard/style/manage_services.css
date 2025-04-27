@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+}
+
+/* Container */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 30px;
+  color: #212529;
+}
+
+/* Add Service Form */
+.service-form {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.service-form h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #212529;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #495057;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+}
+
+.btn-submit {
+  display: block;
+  width: 100%;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background-color: #0b5ed7;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.services-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.services-table thead {
+  background: #212529;
+  color: white;
+}
+
+.services-table th,
+.services-table td {
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.services-table tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.inline-form {
+  display: inline;
+}
+
+.btn-delete {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: #bb2d3b;
+}
+
+/* No Data */
+.no-data {
+  text-align: center;
+  color: #6c757d;
+  padding: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .service-form,
+  .dashboard-container {
+    padding: 15px;
+  }
+}

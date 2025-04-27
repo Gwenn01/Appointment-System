@@ -1,0 +1,43 @@
+/* Card Container */
+.card-style {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  margin: 40px auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card Title */
+.card-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #212529;
+}
+
+/* Ordered List */
+.terms-list {
+  margin: 20px 0 30px 20px;
+  padding-left: 0;
+}
+
+.terms-list li {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #495057;
+}
+
+/* Footer Note */
+.footer-note {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+/* Closing Paragraph */
+.closing-text {
+  margin-top: 30px;
+  font-size: 16px;
+  color: #212529;
+}

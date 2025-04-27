@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Customer Sign Up | Appointment System</title>
-  <link rel="stylesheet" href="style/login.css"> <!-- Link to external CSS -->
-  <link rel="stylesheet" href="style/signup.css"> <!-- Custom -->
+  <link rel="stylesheet" href="style/login.css"> 
+  <link rel="stylesheet" href="style/signup.css"> 
 </head>
 <body>
 

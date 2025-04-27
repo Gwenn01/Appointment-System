@@ -1,11 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms</title>
+    <link rel="stylesheet" href="Dashboard/style/about.css?v=2">
+</head>
+<body>
 <div class="card-style">
-    <h3 class="mb-3">Terms and Conditions</h3>
+    <h3 class="card-title">Terms and Conditions</h3>
 
     <p>
         By accessing and using the services of <strong>Dr. Layug’s Dental & Medical Clinic</strong> through this platform, you agree to be bound by the following terms and conditions:
     </p>
 
-    <ol class="mb-4">
+    <ol class="terms-list">
         <li>
             <strong>Accurate Information:</strong> You are responsible for providing true and updated personal and contact details when creating and using your account.
         </li>
@@ -26,11 +35,13 @@
         </li>
     </ol>
 
-    <p class="text-muted">
+    <p class="footer-note">
         We reserve the right to modify these terms at any time without prior notice. Continued use of the system after changes implies acceptance.
     </p>
 
-    <p class="mt-4">
+    <p class="closing-text">
         If you have any questions regarding these terms, please contact our front desk or send us a message via the contact section.
     </p>
 </div>
+</body>
+</html>

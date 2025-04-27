@@ -42,58 +42,64 @@ while ($row = mysqli_fetch_assoc($result)) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Manage Services | Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Manage Services | Admin Dashboard</title>
+  <link rel="stylesheet" href="AdminDashboard/style/manage_services.css"> <!-- New Pure CSS -->
 </head>
-<body class="bg-light">
-<div class="container mt-5">
-    <h2 class="text-center mb-4">Manage Services</h2>
+<body>
 
-    <!-- Add Service Form -->
-    <form method="POST" class="card p-4 shadow-sm mb-4">
-        <h5>Add New Service</h5>
-        <div class="mb-3">
-            <label for="service_name" class="form-label">Service Name</label>
-            <input type="text" name="service_name" id="service_name" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Service Description</label>
-            <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
-        </div>
-        <button type="submit" name="add_service" class="btn btn-primary w-100">Add Service</button>
-    </form>
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Manage Services</h1>
+  </header>
 
-    <!-- Services Table -->
-    <table class="table table-bordered bg-white shadow-sm">
-        <thead class="table-dark">
-            <tr>
-                <th>#</th>
-                <th>Service Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if (count($services) > 0): ?>
-                <?php foreach ($services as $service): ?>
-                    <tr>
-                        <td><?= $service['id'] ?></td>
-                        <td><?= htmlspecialchars($service['service_name']) ?></td>
-                        <td><?= htmlspecialchars($service['description']) ?></td>
-                        <td>
-                            <form method="POST" onsubmit="return confirm('Are you sure you want to delete this service?');" style="display:inline;">
-                                <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
-                                <button type="submit" name="delete_service" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr><td colspan="4" class="text-center text-muted">No services found.</td></tr>
-            <?php endif; ?>
-        </tbody>
+  <!-- Add Service Form -->
+  <form method="POST" class="service-form">
+    <h2>Add New Service</h2>
+    <div class="form-group">
+      <label for="service_name">Service Name</label>
+      <input type="text" name="service_name" id="service_name" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Service Description</label>
+      <textarea name="description" id="description" rows="3" required></textarea>
+    </div>
+    <button type="submit" name="add_service" class="btn-submit">Add Service</button>
+  </form>
+
+  <!-- Services Table -->
+  <div class="table-wrapper">
+    <table class="services-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Service Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if (count($services) > 0): ?>
+            <?php foreach ($services as $service): ?>
+                <tr>
+                    <td><?= $service['id'] ?></td>
+                    <td><?= htmlspecialchars($service['service_name']) ?></td>
+                    <td><?= htmlspecialchars($service['description']) ?></td>
+                    <td>
+                        <form method="POST" onsubmit="return confirm('Are you sure you want to delete this service?');" class="inline-form">
+                            <input type="hidden" name="service_id" value="<?= $service['id'] ?>">
+                            <button type="submit" name="delete_service" class="btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr><td colspan="4" class="no-data">No services found.</td></tr>
+        <?php endif; ?>
+      </tbody>
     </table>
+  </div>
 </div>
+
 </body>
 </html>

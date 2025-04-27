@@ -26,83 +26,8 @@ $page_file = $allowed_pages[$page] ?? null;
     <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="style/dashborad_design.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f1f3f6;
-        }
-
-        .sidebar {
-            width: 250px;
-            background-color: #212529;
-            color: white;
-            padding: 20px;
-            flex-shrink: 0;
-        }
-
-        .sidebar h4 {
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .sidebar ul {
-            padding: 0;
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            margin-bottom: 15px;
-        }
-
-        .sidebar ul li a {
-            display: block;
-            color: #cfd8dc;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 8px;
-            transition: background 0.2s ease-in-out;
-        }
-
-        .sidebar ul li a:hover,
-        .sidebar ul li a.active {
-            background-color: #0d6efd;
-            color: white;
-        }
-
-        .sidebar .logout {
-            color: #f44336;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .card-style {
-            background-color: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.08);
-        }
-
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-            }
-            .main-content {
-                padding: 20px;
-            }
-        }
-    </style>
 </head>
 <body>
 
@@ -129,8 +54,7 @@ $page_file = $allowed_pages[$page] ?? null;
         }
         ?>
     </div>
-
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap & Icons -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

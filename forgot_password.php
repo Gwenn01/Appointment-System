@@ -13,12 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->store_result();
 
     if ($stmt->num_rows === 1) {
-        // Generate reset token (mocked)
         $token = bin2hex(random_bytes(16));
         $_SESSION['reset_token'] = $token;
         $_SESSION['reset_email'] = $email;
 
-        // Here you'd normally send email. For demo, we redirect with token.
         header("Location: Backend/reset_password.php?token=$token");
         exit;
     } else {
@@ -28,24 +26,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Forgot Password</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style/forgot_password.css"> <!-- External pure CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body class="bg-light">
-<div class="container mt-5" style="max-width: 500px;">
-    <h3 class="mb-3 text-center">Forgot Password</h3>
+<body>
+
+<div class="container">
+    <h3 class="title">Forgot Password</h3>
+
     <?php if (!empty($error)): ?>
-        <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
+        <div class="alert"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
-    <form method="POST" class="card p-4 shadow-sm">
-        <div class="mb-3">
-            <label for="email" class="form-label">Enter your email address</label>
-            <input type="email" name="email" class="form-control" required>
+
+    <form method="POST" class="form-card">
+        <div class="form-group">
+            <label for="email">Enter your email address</label>
+            <input type="email" name="email" id="email" required>
         </div>
-        <button class="btn btn-primary w-100">Verify Email</button>
+        <button type="submit" class="btn-submit">Verify Email</button>
     </form>
 </div>
+
 </body>
 </html>

@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa;
+}
+
+/* Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 30px;
+  color: #212529;
+}
+
+/* Search and Filter */
+.search-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-input,
+.filter-select {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Table */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.appointments-table thead {
+  background: #212529;
+  color: white;
+}
+
+.appointments-table th,
+.appointments-table td {
+  padding: 14px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.appointments-table tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.status-pending {
+  background: #ffc107;
+  color: black;
+}
+
+.status-confirmed {
+  background: #28a745;
+  color: white;
+}
+
+.status-cancelled {
+  background: #dc3545;
+  color: white;
+}
+
+/* Buttons */
+.inline-form {
+  display: inline;
+}
+
+.btn-approve,
+.btn-reject {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.btn-approve {
+  background-color: #198754;
+  color: white;
+}
+
+.btn-approve:hover {
+  background-color: #157347;
+}
+
+.btn-reject {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-reject:hover {
+  background-color: #bb2d3b;
+}
+
+/* Text muted */
+.text-muted {
+  color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-filter-bar {
+    flex-direction: column;
+  }
+}

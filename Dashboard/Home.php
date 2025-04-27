@@ -56,37 +56,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
     <meta charset="UTF-8">
     <title>My Appointments | Customer Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="Dashboard/style/home.css?v=2">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> 
 </head>
 <body class="bg-light">
 
 <!-- Header -->
-<header class="d-flex justify-content-between align-items-center p-3 bg-dark text-white shadow">
-    <h4 class="mb-0">Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h4>
-    <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#newAppointmentModal">
+<header class="header">
+    <h4>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h4>
+    <button class="btn-light" id="openModalBtn">
         <i class="bi bi-plus-lg"></i> New Appointment
     </button>
 </header>
 
 <!-- Main Content -->
-<main class="container py-4">
+<main class="container">
 
     <!-- Section: Check Available Appointment -->
-    <section class="mb-5">
-        <h5 class="mb-3"><i class="bi bi-search"></i> Check Available Appointment</h5>
-        <form method="POST" action="" class="row g-3 align-items-end">
-            <div class="col-md-6">
+    <section class="section">
+        <h5 class="section-title"><i class="bi bi-search"></i> Check Available Appointment</h5>
+        <form method="POST" action="" class="form-grid">
+            <div class="form-group">
                 <label for="datePicker" class="form-label">Select Date</label>
                 <input type="date" name="slot_date" id="datePicker" class="form-control" value="<?= htmlspecialchars($selectedDate) ?>" required>
             </div>
-            <div class="col-md-4">
-                <button type="submit" name="check_date" class="btn btn-primary w-100"><i class="bi bi-search"></i> Check Availability</button>
+            <div class="form-group">
+                <button type="submit" name="check_date" class="btn-primary"><i class="bi bi-search"></i> Check Availability</button>
             </div>
         </form>
 
         <?php if (!empty($selectedDate)): ?>
-            <div class="alert alert-info mt-4">
+            <div class="alert-info">
                 <strong>Booked Slots on <?= htmlspecialchars($selectedDate) ?>:</strong><br>
                 <?= count($bookedSlots) > 0 ? implode(', ', $bookedSlots) : 'No slots booked yet.' ?>
             </div>
@@ -94,83 +94,100 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
     </section>
 
     <!-- Section: Upcoming Appointment -->
-    <section class="mb-5">
-        <h5 class="mb-3"><i class="bi bi-calendar-event"></i> Upcoming Appointment</h5>
+    <section class="section">
+        <h5 class="section-title"><i class="bi bi-calendar-event"></i> Upcoming Appointment</h5>
 
         <?php if (!empty($upcoming)): ?>
-            <div class="card shadow-sm">
+            <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><i class="bi bi-clipboard-heart"></i> <?= htmlspecialchars($upcoming['service_name']) ?></h5>
                     <p>
                         <strong>Date:</strong> <?= htmlspecialchars($upcoming['slot_date']) ?><br>
                         <strong>Time:</strong> <?= date("g:i A", strtotime($upcoming['start_time'])) ?><br>
                         <strong>Status:</strong>
-                        <span class="badge <?= $upcoming['status'] === 'confirmed' ? 'bg-success' : 'bg-warning text-dark' ?>">
+                        <span class="badge <?= $upcoming['status'] === 'confirmed' ? 'bg-success' : 'bg-warning' ?>">
                             <?= ucfirst($upcoming['status']) ?>
                         </span>
                     </p>
                     <form method="POST" action="Backend/cancel_appointment.php" onsubmit="return confirm('Cancel this appointment?');">
                         <input type="hidden" name="appointment_id" value="<?= $upcoming['id'] ?>">
-                        <button class="btn btn-outline-danger btn-sm"><i class="bi bi-x-circle"></i> Cancel</button>
+                        <button class="btn-outline-danger"><i class="bi bi-x-circle"></i> Cancel</button>
                     </form>
                 </div>
             </div>
         <?php else: ?>
-            <div class="alert alert-secondary">You have no upcoming appointments.</div>
+            <div class="alert-secondary">You have no upcoming appointments.</div>
         <?php endif; ?>
     </section>
 
 </main>
 
 <!-- Modal: Book Appointment -->
-<div class="modal fade" id="newAppointmentModal" tabindex="-1" aria-labelledby="newAppointmentModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="bi bi-calendar-plus"></i> Book an Appointment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body">
-                <?php if (!empty($selectedDate)): ?>
-                    <form method="POST" action="Backend/book_appointment.php">
-                        <input type="hidden" name="slot_date" value="<?= htmlspecialchars($selectedDate) ?>">
-
-                        <div class="mb-3">
-                            <label class="form-label">Start Time</label>
-                            <input type="time" class="form-control" name="start_time" id="startTime" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Service</label>
-                            <select class="form-select" name="service" required>
-                                <option value="">Choose a service</option>
-                                <?php foreach ($serviceOptions as $service): ?>
-                                    <option value="<?= $service['id'] ?>"><?= htmlspecialchars($service['service_name']) ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Notes (optional)</label>
-                            <textarea class="form-control" name="notes" rows="3" placeholder="Any special instructions..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-success w-100">Set Appointment</button>
-                    </form>
-                <?php else: ?>
-                    <div class="alert alert-warning">Please check available slots first before booking.</div>
-                <?php endif; ?>
-            </div>
-
+<div class="modal" id="newAppointmentModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title"><i class="bi bi-calendar-plus"></i> Book an Appointment</h5>
+            <button type="button" class="close-modal" id="closeModalBtn">&times;</button>
         </div>
+
+        <div class="modal-body">
+            <?php if (!empty($selectedDate)): ?>
+                <form method="POST" action="Backend/book_appointment.php">
+                    <input type="hidden" name="slot_date" value="<?= htmlspecialchars($selectedDate) ?>">
+
+                    <div class="form-group">
+                        <label class="form-label">Start Time</label>
+                        <input type="time" name="start_time" id="startTime" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Service</label>
+                        <select name="service" class="form-control" required>
+                            <option value="">Choose a service</option>
+                            <?php foreach ($serviceOptions as $service): ?>
+                                <option value="<?= $service['id'] ?>"><?= htmlspecialchars($service['service_name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Notes (optional)</label>
+                        <textarea name="notes" class="form-control" rows="3" placeholder="Any special instructions..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-success w-100">Set Appointment</button>
+                </form>
+            <?php else: ?>
+                <div class="alert-warning">Please check available slots first before booking.</div>
+            <?php endif; ?>
+        </div>
+
     </div>
 </div>
 
 <!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="Dashboard/script/home.js"></script> <!-- I'll help you build this later -->
 <script>
+    // Modal Handling
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modal = document.getElementById('newAppointmentModal');
+
+    openModalBtn.addEventListener('click', () => {
+        modal.classList.add('show');
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target == modal) {
+            modal.classList.remove('show');
+        }
+    });
+
+    // Date Validation
     const datePicker = document.getElementById('datePicker');
     const today = new Date().toISOString().split('T')[0];
     datePicker.min = today;
@@ -182,23 +199,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
             datePicker.value = '';
         }
     });
-
-    const startTimeInput = document.getElementById('startTime');
-
-    const isLunchTime = (time) => time >= "12:00" && time < "13:00";
-    const validateTime = (input, label) => {
-        const value = input.value;
-        if (isLunchTime(value)) {
-            alert(`The selected ${label} falls within lunch break (12:00 PM - 1:00 PM).`);
-            input.value = "";
-        }
-    };
-
-    startTimeInput?.addEventListener('change', () => validateTime(startTimeInput, "start time"));
-    if (startTimeInput) {
-        startTimeInput.min = "07:00";
-        startTimeInput.max = "17:00";
-    }
 </script>
 </body>
 </html>
