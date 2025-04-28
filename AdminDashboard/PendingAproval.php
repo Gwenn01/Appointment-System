@@ -1,7 +1,9 @@
 <?php
 if (!isset($_SESSION['adminid'])) {
-    header("Location: ../admin_login.php");
-    exit();
+    if (!isset($_SESSION['adminid'])) {
+        header("Location: ../admin_login.php");
+        exit();
+    }
 }
 
 require(__DIR__ . '/../Database/database.php');
@@ -26,8 +28,8 @@ $pending_users = mysqli_query($conn, "
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pending Approvals | Admin Dashboard</title>
-  <link rel="stylesheet" href="AdminDashboard/style/pending_approvals.css"> <!-- New Pure CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="AdminDashboard/style/pending_approvals.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -43,7 +45,7 @@ $pending_users = mysqli_query($conn, "
       <option value="Appointment">Appointment</option>
       <option value="User Registration">User Registration</option>
     </select>
-    <button class="btn-refresh" onclick="location.reload();"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+    <button class="btn-refresh" onclick="location.reload();"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
   </div>
 
   <div class="table-wrapper">
@@ -70,12 +72,12 @@ $pending_users = mysqli_query($conn, "
             <form method="POST" action="Backend/approve_request.php" class="inline-form">
               <input type="hidden" name="type" value="appointment">
               <input type="hidden" name="id" value="<?= $row['id']; ?>">
-              <button class="btn-approve"><i class="bi bi-check-lg"></i> Approve</button>
+              <button class="btn-approve"><i class="fa-solid fa-check"></i> Approve</button>
             </form>
             <form method="POST" action="Backend/reject_request.php" class="inline-form">
               <input type="hidden" name="type" value="appointment">
               <input type="hidden" name="id" value="<?= $row['id']; ?>">
-              <button class="btn-reject"><i class="bi bi-x-lg"></i> Reject</button>
+              <button class="btn-reject"><i class="fa-solid fa-xmark"></i> Reject</button>
             </form>
           </td>
         </tr>
@@ -92,12 +94,12 @@ $pending_users = mysqli_query($conn, "
             <form method="POST" action="Backend/approve_request.php" class="inline-form">
               <input type="hidden" name="type" value="registration">
               <input type="hidden" name="id" value="<?= $row['id']; ?>">
-              <button class="btn-approve"><i class="bi bi-check-lg"></i> Approve</button>
+              <button class="btn-approve"><i class="fa-solid fa-check"></i> Approve</button>
             </form>
             <form method="POST" action="Backend/reject_request.php" class="inline-form">
               <input type="hidden" name="type" value="registration">
               <input type="hidden" name="id" value="<?= $row['id']; ?>">
-              <button class="btn-reject"><i class="bi bi-x-lg"></i> Reject</button>
+              <button class="btn-reject"><i class="fa-solid fa-xmark"></i> Reject</button>
             </form>
           </td>
         </tr>

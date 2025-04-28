@@ -1,7 +1,9 @@
 <?php
 if (!isset($_SESSION['adminid'])) {
-    header("Location: ../admin_login.php");
-    exit();
+    if (!isset($_SESSION['adminid'])) {
+        header("Location: ../admin_login.php");
+        exit();
+    }
 }
 
 require(__DIR__ . '/../Database/database.php');
@@ -30,7 +32,7 @@ $result = mysqli_query($conn, $query);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Manage Appointments | Admin Dashboard</title>
   <link rel="stylesheet" href="AdminDashboard/style/manage_appointments.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -86,12 +88,12 @@ $result = mysqli_query($conn, $query);
                         <form method="POST" action="Backend/update_status.php" class="inline-form">
                             <input type="hidden" name="id" value="<?= $row['id'] ?>">
                             <input type="hidden" name="status" value="confirmed">
-                            <button type="submit" class="btn-approve"><i class="bi bi-check-lg"></i> Approve</button>
+                            <button type="submit" class="btn-approve"><i class="fa-solid fa-check"></i> Approve</button>
                         </form>
                         <form method="POST" action="Backend/update_status.php" class="inline-form">
                             <input type="hidden" name="id" value="<?= $row['id'] ?>">
                             <input type="hidden" name="status" value="cancelled">
-                            <button type="submit" class="btn-reject"><i class="bi bi-x-lg"></i> Reject</button>
+                            <button type="submit" class="btn-reject"><i class="fa-solid fa-xmark"></i> Reject</button>
                         </form>
                     <?php else: ?>
                         <span class="text-muted">No Actions</span>

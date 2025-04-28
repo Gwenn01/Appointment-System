@@ -1,8 +1,11 @@
 <?php
     if (!isset($_SESSION['adminid'])) {
-        header("Location: ../admin_login.php");
-        exit();
+        if (!isset($_SESSION['adminid'])) {
+            header("Location: ../admin_login.php");
+            exit();
+        }
     }
+
     require(__DIR__ . '/../Database/database.php');
 
     $totalAppointments = 0;
@@ -33,8 +36,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | Admin Dashboard</title>
-    <link rel="stylesheet" href="AdminDashboard/style/admin_dashboard.css"> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="AdminDashboard/style/admin_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -45,17 +48,17 @@
 
     <section class="dashboard-cards">
         <div class="card">
-            <h3><i class="bi bi-calendar-check text-primary"></i> Total Appointments</h3>
+            <h3><i class="fa-solid fa-calendar-check text-primary"></i> Total Appointments</h3>
             <p class="text-primary"><?= $totalAppointments; ?></p>
         </div>
 
         <div class="card">
-            <h3><i class="bi bi-people text-success"></i> Total Users</h3>
+            <h3><i class="fa-solid fa-users text-success"></i> Total Users</h3>
             <p class="text-success"><?= $totalUsers; ?></p>
         </div>
 
         <div class="card">
-            <h3><i class="bi bi-hourglass-split text-warning"></i> Pending Approvals</h3>
+            <h3><i class="fa-solid fa-hourglass-half text-warning"></i> Pending Approvals</h3>
             <p class="text-warning"><?= $pendingApprovals; ?></p>
         </div>
     </section>

@@ -1,8 +1,10 @@
 <?php
 // Check if user is logged in
 if (!isset($_SESSION['userid'])) {
-    header("Location: ../login.php");
-    exit();
+    if (!isset($_SESSION['userid'])) {
+        header("Location: ../login.php");
+        exit();
+    }
 }
 
 // Database connection
@@ -20,36 +22,36 @@ $user = mysqli_fetch_assoc($result);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile | Appointment System</title>
-  <link rel="stylesheet" href="Dashboard/style/profile.css"> <!-- New Pure CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> <!-- Bootstrap Icons Only -->
+  <link rel="stylesheet" href="Dashboard/style/profile.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
 <div class="profile-container">
-  <h2 class="profile-title"><i class="bi bi-person-circle"></i> My Profile</h2>
+  <h2 class="profile-title"><i class="fa-solid fa-user-circle"></i> My Profile</h2>
 
   <h4><?= htmlspecialchars($user['name']) ?></h4>
 
   <div class="profile-info">
-    <p><i class="bi bi-envelope"></i> <?= htmlspecialchars($user['email']) ?></p>
-    <p><i class="bi bi-telephone"></i> <?= htmlspecialchars($user['phone_number']) ?></p>
-    <p><i class="bi bi-gender-ambiguous"></i> <?= htmlspecialchars($user['gender']) ?></p>
-    <p><i class="bi bi-calendar-event"></i> <?= htmlspecialchars($user['date_of_birth']) ?></p>
-    <p><i class="bi bi-house-door"></i> <?= htmlspecialchars($user['address']) ?></p>
+    <p><i class="fa-solid fa-envelope"></i> <?= htmlspecialchars($user['email']) ?></p>
+    <p><i class="fa-solid fa-phone"></i> <?= htmlspecialchars($user['phone_number']) ?></p>
+    <p><i class="fa-solid fa-venus-mars"></i> <?= htmlspecialchars($user['gender']) ?></p>
+    <p><i class="fa-solid fa-calendar-days"></i> <?= htmlspecialchars($user['date_of_birth']) ?></p>
+    <p><i class="fa-solid fa-house"></i> <?= htmlspecialchars($user['address']) ?></p>
   </div>
 
   <button class="edit-profile-btn" id="openModalBtn">
-    <i class="bi bi-pencil"></i> Edit Profile
+    <i class="fa-solid fa-pen"></i> Edit Profile
   </button>
 
   <hr class="divider">
 
-  <h5 class="section-title"><i class="bi bi-key"></i> Change Password</h5>
+  <h5 class="section-title"><i class="fa-solid fa-key"></i> Change Password</h5>
   <form method="POST" action="Backend/change_password.php" class="form-style">
     <input type="password" name="current_password" class="form-control" placeholder="Current Password" required>
     <input type="password" name="new_password" class="form-control" placeholder="New Password" required>
     <input type="password" name="confirm_password" class="form-control" placeholder="Confirm New Password" required>
-    <button type="submit" class="btn-success w-100"><i class="bi bi-save"></i> Update Password</button>
+    <button type="submit" class="btn-success w-100"><i class="fa-solid fa-floppy-disk"></i> Update Password</button>
   </form>
 </div>
 
@@ -57,7 +59,7 @@ $user = mysqli_fetch_assoc($result);
 <div class="modal" id="editProfileModal">
   <div class="modal-content">
     <div class="modal-header">
-      <h5><i class="bi bi-pencil"></i> Edit Profile</h5>
+      <h5><i class="fa-solid fa-pen"></i> Edit Profile</h5>
       <button class="close-modal" id="closeModalBtn">&times;</button>
     </div>
 
@@ -83,7 +85,7 @@ $user = mysqli_fetch_assoc($result);
       <label>Address</label>
       <textarea name="address" rows="2" class="form-control" required><?= htmlspecialchars($user['address']) ?></textarea>
 
-      <button type="submit" class="btn-primary w-100"><i class="bi bi-save"></i> Save Changes</button>
+      <button type="submit" class="btn-primary w-100"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
     </form>
   </div>
 </div>

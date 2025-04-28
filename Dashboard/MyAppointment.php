@@ -1,7 +1,9 @@
 <?php
 if (!isset($_SESSION['userid'])) {
-    header("Location: ../login.php");
-    exit();
+    if (!isset($_SESSION['userid'])) {
+        header("Location: ../login.php");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -11,7 +13,7 @@ if (!isset($_SESSION['userid'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointments | Appointment System</title>
     <link rel="stylesheet" href="Dashboard/style/appointment.css"> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -47,7 +49,7 @@ if ($user_id) {
 ?>
 
 <div class="appointments-container">
-    <h2 class="title"><i class="bi bi-calendar-check"></i> My Appointments</h2>
+    <h2 class="title"><i class="fa-solid fa-calendar-check"></i> My Appointments</h2>
 
     <div class="table-wrapper">
         <table class="appointments-table">
@@ -85,7 +87,7 @@ if ($user_id) {
                                     <form method="POST" action="Backend/cancel_appointment.php" onsubmit="return confirm('Are you sure you want to cancel this appointment?');">
                                         <input type="hidden" name="appointment_id" value="<?= $appt['id'] ?>">
                                         <button type="submit" class="cancel-btn">
-                                            <i class="bi bi-x-circle"></i> Cancel
+                                            <i class="fa-solid fa-xmark-circle"></i> Cancel
                                         </button>
                                     </form>
                                 <?php else: ?>

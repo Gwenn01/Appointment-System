@@ -1,7 +1,9 @@
 <?php
 if (!isset($_SESSION['adminid'])) {
-    header("Location: ../admin_login.php");
-    exit();
+    if (!isset($_SESSION['adminid'])) {
+        header("Location: ../admin_login.php");
+        exit();
+    }
 }
 
 require(__DIR__ . '/../Database/database.php');
@@ -58,8 +60,8 @@ $accounts = array_merge($admins, $customers);
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Manage Accounts | Admin Dashboard</title>
-<link rel="stylesheet" href="AdminDashboard/style/manage_accounts.css"> <!-- Your custom pure CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+<link rel="stylesheet" href="AdminDashboard/style/manage_accounts.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
@@ -97,20 +99,20 @@ $accounts = array_merge($admins, $customers);
           <td><span class="badge <?= $account['role'] === 'Admin' ? 'badge-admin' : 'badge-customer'; ?>"><?= $account['role']; ?></span></td>
           <td>
             <?php if ($account['role'] === 'Admin'): ?>
-              <a href="edit_admin.php?id=<?= $account['id']; ?>" class="btn-edit"><i class="bi bi-pencil"></i> Edit</a>
-              <a href="delete_admin.php?id=<?= $account['id']; ?>" class="btn-delete" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i> Delete</a>
+              <a href="edit_admin.php?id=<?= $account['id']; ?>" class="btn-edit"><i class="fa-solid fa-pen"></i> Edit</a>
+              <a href="delete_admin.php?id=<?= $account['id']; ?>" class="btn-delete" onclick="return confirm('Are you sure?')"><i class="fa-solid fa-trash"></i> Delete</a>
             <?php else: ?>
               <button 
                 class="btn-edit editBtn"
                 data-id="<?= $account['id']; ?>"
                 data-name="<?= htmlspecialchars($account['name']); ?>"
                 data-email="<?= htmlspecialchars($account['email']); ?>">
-                <i class="bi bi-pencil"></i> Edit
+                <i class="fa-solid fa-pen"></i> Edit
               </button>
 
               <form method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?')">
                 <input type="hidden" name="user_id" value="<?= $account['id']; ?>">
-                <button type="submit" name="delete_user" class="btn-delete"><i class="bi bi-trash"></i> Delete</button>
+                <button type="submit" name="delete_user" class="btn-delete"><i class="fa-solid fa-trash"></i> Delete</button>
               </form>
             <?php endif; ?>
           </td>

@@ -2,8 +2,10 @@
 require(__DIR__ . '/../Database/database.php');
 
 if (!isset($_SESSION['userid'])) {
-    header("Location: ../login.php");
-    exit();
+    if (!isset($_SESSION['userid'])) {
+        header("Location: ../login.php");
+        exit();
+    }
 }
 
 $user_id = $_SESSION['userid'];
@@ -57,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
     <title>My Appointments | Customer Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Dashboard/style/home.css?v=2">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="bg-light">
 
@@ -65,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
 <header class="header">
     <h4>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</h4>
     <button class="btn-light" id="openModalBtn">
-        <i class="bi bi-plus-lg"></i> New Appointment
+        <i class="fa-solid fa-plus"></i> New Appointment
     </button>
 </header>
 
@@ -74,14 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
 
     <!-- Section: Check Available Appointment -->
     <section class="section">
-        <h5 class="section-title"><i class="bi bi-search"></i> Check Available Appointment</h5>
+        <h5 class="section-title"><i class="fa-solid fa-magnifying-glass"></i> Check Available Appointment</h5>
         <form method="POST" action="" class="form-grid">
             <div class="form-group">
                 <label for="datePicker" class="form-label">Select Date</label>
                 <input type="date" name="slot_date" id="datePicker" class="form-control" value="<?= htmlspecialchars($selectedDate) ?>" required>
             </div>
             <div class="form-group">
-                <button type="submit" name="check_date" class="btn-primary"><i class="bi bi-search"></i> Check Availability</button>
+                <button type="submit" name="check_date" class="btn-primary">
+                    <i class="fa-solid fa-magnifying-glass"></i> Check Availability
+                </button>
             </div>
         </form>
 
@@ -95,12 +99,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
 
     <!-- Section: Upcoming Appointment -->
     <section class="section">
-        <h5 class="section-title"><i class="bi bi-calendar-event"></i> Upcoming Appointment</h5>
+        <h5 class="section-title"><i class="fa-solid fa-calendar-days"></i> Upcoming Appointment</h5>
 
         <?php if (!empty($upcoming)): ?>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><i class="bi bi-clipboard-heart"></i> <?= htmlspecialchars($upcoming['service_name']) ?></h5>
+                    <h5 class="card-title"><i class="fa-solid fa-heart-circle-check"></i> <?= htmlspecialchars($upcoming['service_name']) ?></h5>
                     <p>
                         <strong>Date:</strong> <?= htmlspecialchars($upcoming['slot_date']) ?><br>
                         <strong>Time:</strong> <?= date("g:i A", strtotime($upcoming['start_time'])) ?><br>
@@ -111,7 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
                     </p>
                     <form method="POST" action="Backend/cancel_appointment.php" onsubmit="return confirm('Cancel this appointment?');">
                         <input type="hidden" name="appointment_id" value="<?= $upcoming['id'] ?>">
-                        <button class="btn-outline-danger"><i class="bi bi-x-circle"></i> Cancel</button>
+                        <button class="btn-outline-danger">
+                            <i class="fa-solid fa-xmark-circle"></i> Cancel
+                        </button>
                     </form>
                 </div>
             </div>
@@ -126,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
 <div class="modal" id="newAppointmentModal">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title"><i class="bi bi-calendar-plus"></i> Book an Appointment</h5>
+            <h5 class="modal-title"><i class="fa-solid fa-calendar-plus"></i> Book an Appointment</h5>
             <button type="button" class="close-modal" id="closeModalBtn">&times;</button>
         </div>
 
@@ -166,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_date'])) {
 </div>
 
 <!-- Scripts -->
-<script src="Dashboard/script/home.js"></script> <!-- I'll help you build this later -->
+<script src="Dashboard/script/home.js"></script>
 <script>
     // Modal Handling
     const openModalBtn = document.getElementById('openModalBtn');

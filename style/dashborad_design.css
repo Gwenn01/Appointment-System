@@ -79,6 +79,11 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   margin-bottom: 30px;
 }
+/* Sidebar Icon Spacing */
+.sidebar ul li a i {
+  margin-right: 8px;
+  vertical-align: middle;
+}
 
 /* Responsive - Mobile view */
 @media (max-width: 768px) {
