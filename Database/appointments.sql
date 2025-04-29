@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Mar 30, 2025 at 05:49 PM
+-- Generation Time: Apr 29, 2025 at 07:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,7 +43,18 @@ CREATE TABLE `appointments` (
 
 INSERT INTO `appointments` (`id`, `user_id`, `service_id`, `time_slot_id`, `status`, `notes`, `created_at`) VALUES
 (1, 1, 1, 1, 'cancelled', 'for my braces', '2025-03-30 13:54:10'),
-(2, 1, 2, 2, 'confirmed', 'removing teeth', '2025-03-30 14:12:18');
+(2, 1, 2, 2, 'cancelled', 'removing teeth', '2025-03-30 14:12:18'),
+(3, 1, 1, 3, 'cancelled', '', '2025-04-03 13:36:12'),
+(4, 1, 1, 4, 'cancelled', '', '2025-04-05 14:10:46'),
+(5, 1, 1, 5, 'cancelled', '', '2025-04-05 15:28:52'),
+(6, 1, 5, 6, 'confirmed', '', '2025-04-07 05:26:27'),
+(7, 1, 1, 7, 'confirmed', '', '2025-04-07 05:39:16'),
+(8, 1, 1, 8, 'cancelled', '', '2025-04-07 05:40:07'),
+(9, 1, 5, 9, 'cancelled', '', '2025-04-22 11:17:47'),
+(10, 1, 3, 10, 'cancelled', '', '2025-04-22 11:18:47'),
+(11, 1, 3, 11, 'cancelled', '', '2025-04-23 14:19:05'),
+(12, 1, 2, 12, 'confirmed', '', '2025-04-27 15:50:27'),
+(13, 11, 1, 13, 'pending', 'ggs', '2025-04-29 05:30:23');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +77,7 @@ ALTER TABLE `appointments`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

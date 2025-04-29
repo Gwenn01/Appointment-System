@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Mar 30, 2025 at 05:47 PM
+-- Generation Time: Apr 29, 2025 at 07:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -47,8 +47,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `name`, `phone_number`, `email`, `password`, `gender`, `date_of_birth`, `address`, `created_at`, `status`, `is_verified`) VALUES
-(1, 'gwen', 'Arnel Gwen Nuqui', '09771346883', 'arnelgwenn@gmail.com', '$2y$10$XsteYas2Yd6C5QKPwx6fdeCjZjWVq40z9VtmSuyrjbSELsEvz9F7m', 'Male', '2004-07-01', 'San Agustin Iba Zambales', '2025-03-29 02:52:35', 1, 1),
-(2, 'nuquigwen', 'Gwen Nuqui', '09771346884', 'arnelgwen0701@gmail.com', '$2y$10$ai1CmT63UNnkKjGkwACC4e921wjqfF1RPDyB9skd1wUktJICvhyXG', 'Male', '2004-07-01', 'San Agustin Iba Zambales', '2025-03-29 04:35:25', 1, 1);
+(1, 'gwen', 'Arnel Gwen Nuqui', '09771346883', 'arnelgwenn@gmail.com', '$2y$10$fQeIr8FqcI2DJpxCS/07Au7vGzEk1A.eSbH4Sm4TegcNTOLCg2Cnm', 'Male', '2004-07-01', 'San Agustin Iba Zambales', '2025-03-29 02:52:35', 1, 1),
+(10, 'louie20', 'Louie Nery', '0942144214214', 'loui@gmail.com', '$2y$10$fT90Ct2KcY6BVLBPwhEBGeBk6BvpZHczbA2WrAdBBASdagD6t99gK', 'Male', '2004-08-20', 'San Felipe', '2025-04-07 05:30:46', 1, 0),
+(11, 'Alejandro', 'Alex Orcino', '09273611457', 'orcinoalex@gmail.com', '$2y$10$ZAZo0tREsUTeuHcgSMJWsuzO2JjswzyneEzwSMNpkOpC5gW87sT7u', 'Male', '2002-04-27', 'San Felipe Zambales', '2025-04-29 05:28:45', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -73,7 +74,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

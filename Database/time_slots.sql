@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Mar 30, 2025 at 05:49 PM
+-- Generation Time: Apr 29, 2025 at 07:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,17 +30,28 @@ SET time_zone = "+00:00";
 CREATE TABLE `time_slots` (
   `id` int(11) NOT NULL,
   `slot_date` date NOT NULL,
-  `slot_time` time NOT NULL,
-  `is_booked` tinyint(1) DEFAULT 0
+  `is_booked` tinyint(1) DEFAULT 0,
+  `start_time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `time_slots`
 --
 
-INSERT INTO `time_slots` (`id`, `slot_date`, `slot_time`, `is_booked`) VALUES
-(1, '2025-03-30', '23:53:00', 1),
-(2, '2025-03-31', '10:00:00', 1);
+INSERT INTO `time_slots` (`id`, `slot_date`, `is_booked`, `start_time`) VALUES
+(1, '2025-03-30', 1, '00:00:00'),
+(2, '2025-03-31', 1, '00:00:00'),
+(3, '2025-04-04', 1, '10:00:00'),
+(4, '2025-04-07', 1, '10:00:00'),
+(5, '2025-04-07', 1, '13:30:00'),
+(6, '2025-04-08', 1, '13:00:00'),
+(7, '2025-04-08', 1, '14:38:00'),
+(8, '2025-04-08', 1, '13:00:00'),
+(9, '2025-04-23', 1, '10:00:00'),
+(10, '2025-04-23', 1, '10:00:00'),
+(11, '2025-04-25', 1, '10:00:00'),
+(12, '2025-04-30', 1, '11:00:00'),
+(13, '2025-04-30', 1, '13:00:00');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +71,7 @@ ALTER TABLE `time_slots`
 -- AUTO_INCREMENT for table `time_slots`
 --
 ALTER TABLE `time_slots`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

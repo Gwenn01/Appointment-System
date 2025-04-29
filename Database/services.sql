@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3307
--- Generation Time: Mar 30, 2025 at 05:49 PM
+-- Generation Time: Apr 29, 2025 at 07:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,18 +30,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `services` (
   `id` int(11) NOT NULL,
   `service_name` varchar(100) NOT NULL,
-  `description` text DEFAULT NULL,
-  `duration_minutes` int(11) DEFAULT 30,
-  `price` decimal(10,2) DEFAULT 0.00
+  `description` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `service_name`, `description`, `duration_minutes`, `price`) VALUES
-(1, 'Dental Checkup', 'Basic dental health checkup and advice.', 30, 1500.00),
-(2, 'General Consultation', 'A standard doctor consultation session.', 20, 500.00);
+INSERT INTO `services` (`id`, `service_name`, `description`) VALUES
+(1, 'Dental Checkup', 'Basic dental health checkup and advice.'),
+(2, 'General Consultation', 'A standard doctor consultation session.'),
+(3, 'Braces', 'Dental braces are orthodontic devices, also known as appliances, used to straighten teeth and correct bite problems by applying controlled pressure over time, improving dental health and aesthetics'),
+(4, 'Tooth extraction', 'Removal of a tooth from its socket in the bone. If you are facing a tooth extraction, it can seem a little daunting and nerve-wracking.'),
+(5, 'Teeth cleaning', '(also known as prophylaxis, literally a preventive treatment of a disease) is a procedure for the removal of tartar (mineralized plaque) that may develop even with careful brushing and flossing, especially in areas that are difficult to reach in routine toothbrushing.');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +62,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
